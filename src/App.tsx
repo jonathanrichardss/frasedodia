@@ -96,7 +96,7 @@ function App() {
         <section className='content-section'><p id='main-content'>{randomFrase == '' ? oldFrase : randomFrase}</p></section>
         <section className='btn-section'>
           <button onClick={handleClick} onDrag={handleClick}>Abrir mensagem</button>
-          <button id='whats-btn'><a href={`https://api.whatsapp.com/send/?text=${randomFrase == '' ? randomFrase : 'Venha conhecer o app de frases no link https://'}+&type=phone_number&app_absent=0`}><img id='whats-logo' src="./icons8-whatsapp-100.png" alt="" /></a></button>
+          <button id='whats-btn'><a href={`https://api.whatsapp.com/send/?text=${randomFrase === '' ? 'Venha conhecer o app de frases no link https://' : `Vi essa frase e lembrei de você: ${randomFrase}`}+&type=phone_number&app_absent=0`}><img id='whats-logo' src="./icons8-whatsapp-100.png" alt="" /></a></button>
         </section>
         <section id='horas'>
           <p id='hora'>{hora.padStart(2, "0")}</p>
