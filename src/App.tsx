@@ -16,7 +16,6 @@ function App() {
 
   setInterval(function time() {
     let date = new Date();
-    const actualDate = date.getDate();
     let h = date.getHours();
     let mm = date.getMinutes();
     let s = date.getSeconds();
