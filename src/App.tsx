@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import lista_de_frases from "./frases.json"
+import lista_de_frases from "./../data/frases.json"
 import swal from 'sweetalert';
 import './App.css'
 
@@ -17,10 +17,10 @@ function App() {
   const oldFraseValue = localStorage.getItem('frase')?.valueOf();
 
   setInterval(function time() {
-    let date = new Date();
-    let h = date.getHours();
-    let mm = date.getMinutes();
-    let s = date.getSeconds();
+    const date = new Date();
+    const h = date.getHours();
+    const mm = date.getMinutes();
+    const s = date.getSeconds();
 
     setHora(h.toString());
     setMinuto(mm.toString());
@@ -46,7 +46,6 @@ function App() {
       frase.style.animation = 'fromBottom .8s backwards';
       frase.style.animationDelay = '.8s';
     }
-    console.log('Clicou no fade');
   }
 
   function handleClick() {
@@ -59,10 +58,9 @@ function App() {
     setFadeInAnimation();
 
     //Salva o dia atual no local storage
-    let novaData = new Date();
+    const novaData = new Date();
     if (localStorage.getItem('diaAtual')?.valueOf() === null || localStorage.getItem('diaAtual')?.valueOf() === '' || localStorage.getItem('diaAtual')?.valueOf() === undefined) {
       localStorage.setItem('diaAtual', novaData.getDate().toString());
-      console.log('Entrou no if');
     }
 
     const diaSalvoAnterior = localStorage.getItem('diaAtual')?.valueOf();
@@ -70,9 +68,6 @@ function App() {
 
     //Compara a data atual com a dia salvo no Local Storage anteriormente
     if (diaAtual === diaSalvoAnterior) {
-      console.log(localStorage.getItem('diaAtual')?.valueOf());
-      console.log(novaData.getDate().toString());
-      console.log('datas iguais');
 
       //Gera um alerta na tela informando o status atual da sessão para o usuário.
       if (localStorage.getItem('frase') !== null) {
