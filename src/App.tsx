@@ -12,6 +12,8 @@ function App() {
   const [minuto, setMinuto] = useState("00");
   const [segundo, setSegundo] = useState("00");
 
+  const [mainTitle, setMainTitle] = useState("Você tem uma nova mensagem");
+
   const oldFraseValue = localStorage.getItem('frase')?.valueOf();
 
   setInterval(function time() {
@@ -49,6 +51,9 @@ function App() {
 
   function handleClick() {
 
+    //Atualiza o mainTitle
+    setMainTitle("A sua frase do dia é:");
+
     //Remove elemento da imagem e cria animação para o elemento <p> que irá surgir após o clique.
     document.getElementById('img-box')?.remove();
     setFadeInAnimation();
@@ -60,8 +65,11 @@ function App() {
       console.log('Entrou no if');
     }
 
+    const diaSalvoAnterior = localStorage.getItem('diaAtual')?.valueOf();
+    const diaAtual = novaData.getDate().toString();
+
     //Compara a data atual com a dia salvo no Local Storage anteriormente
-    if (localStorage.getItem('diaAtual')?.valueOf() === novaData.getDate().toString()) {
+    if (diaAtual === diaSalvoAnterior) {
       console.log(localStorage.getItem('diaAtual')?.valueOf());
       console.log(novaData.getDate().toString());
       console.log('datas iguais');
@@ -75,6 +83,8 @@ function App() {
         });
         return;
       }
+    } else {
+      localStorage.setItem('diaAtual', novaData.getDate().toString());
     }
 
     show();
@@ -84,14 +94,14 @@ function App() {
   return (
     <>
       <div className='mainDiv'>
-        <strong><h1>Frase do dia</h1></strong>
+        <strong><h1>{mainTitle}</h1></strong>
         <div id='img-box'>
-          <img src="./../icons8-new-message-65.png" alt="" />
+          <img id='notification-img' src="./../icons8-new-message-65.png" alt="" />
         </div>
         <section className='content-section'><p id='main-content'>{randomFrase == '' ? oldFrase : randomFrase}</p></section>
         <section className='btn-section'>
           <button onClick={handleClick} onDrag={handleClick}>Abrir mensagem</button>
-          <button id='whats-btn'><a href={`https://api.whatsapp.com/send/?text=${randomFrase}+&type=phone_number&app_absent=0`}><img id='whats-logo' src="./icons8-whatsapp-100.png" alt="" /></a></button>
+          <button id='whats-btn'><a href={`https://api.whatsapp.com/send/?text=${randomFrase == '' ? randomFrase : 'Venha conhecer o app de frases no link https://'}+&type=phone_number&app_absent=0`}><img id='whats-logo' src="./icons8-whatsapp-100.png" alt="" /></a></button>
         </section>
         <section id='horas'>
           <p id='hora'>{hora.padStart(2, "0")}</p>

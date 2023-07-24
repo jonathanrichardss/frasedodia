@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
   color: black;
 }
 
@@ -94,13 +98,24 @@ img:hover {
 }
 
 @media (max-width: 569px) and (min-width: 0px) {
-  .mainDiv p {
+  .mainDiv p, h1 {
     text-align: center;
     max-width: 350px;
     font-size: 10px;
   }
+
+  h1 {
+    font-size: 7px;
+  }
 }
 
+@media (max-width: 740px) and (min-width: 0px) {
+  .mainDiv h1 {
+    font-size: 18px;
+    text-align: center;
+    max-width: 350px;
+  }
+}
 
 @media (max-width: 900px) and (min-width: 0px) {
   .mainDiv p {
@@ -146,6 +161,8 @@ img:hover {
 .btn-section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
 }
 
 #whats-logo {
@@ -153,8 +170,19 @@ img:hover {
   max-height: 80px;
   padding: 0;
   margin: 0;
+  animation-play-state: paused;
 }
 
 #whats-btn {
   padding: 0;
+  margin: 0;
+  max-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#notification-img {
+  margin-bottom: 0;
 }
