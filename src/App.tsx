@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import lista_de_frases from "./frases.json"
 import swal from 'sweetalert';
 import './App.css'
@@ -6,9 +6,7 @@ import './App.css'
 
 
 function App() {
-  const [randomIndex, setRandomIndex] = useState(0);
   const [randomFrase, setRandomFrase] = useState("");
-  const [hiddenSyle, setHiddenStyle] = useState("");
   const [oldFrase, setOldFrase] = useState("");
   const [hora, setHora] = useState("00");
   const [minuto, setMinuto] = useState("00");
@@ -16,7 +14,7 @@ function App() {
 
   const oldFraseValue = localStorage.getItem('frase')?.valueOf();
 
-  const getDate = setInterval(function time() {
+  setInterval(function time() {
     let date = new Date();
     const actualDate = date.getDate();
     let h = date.getHours();
@@ -36,7 +34,6 @@ function App() {
 
     //Gera número aleatório.
     const random = Math.round(Math.random() * 100);
-    setRandomIndex(random);
 
     setRandomFrase(lista_de_frases.frases[random]);
     localStorage.setItem('frase', lista_de_frases.frases[random]);
@@ -89,7 +86,7 @@ function App() {
     <>
       <div className='mainDiv'>
         <strong><h1>Frase do dia</h1></strong>
-        <div className={hiddenSyle ? hiddenSyle : ''} id='img-box'>
+        <div id='img-box'>
           <img src="./../icons8-new-message-65.png" alt="" />
         </div>
         <section className='content-section'><p id='main-content'>{randomFrase == '' ? oldFrase : randomFrase}</p></section>
