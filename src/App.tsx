@@ -15,6 +15,7 @@ function App() {
   const [mainTitle, setMainTitle] = useState("Você tem uma nova mensagem");
 
   const oldFraseValue = localStorage.getItem('frase')?.valueOf();
+  const FRASE_API_WHATSAPP = 'Vi essa frase e lembrei de você:';
 
   setInterval(function time() {
     const date = new Date();
@@ -96,7 +97,7 @@ function App() {
         <section className='content-section'><p id='main-content'>{randomFrase == '' ? oldFrase : randomFrase}</p></section>
         <section className='btn-section'>
           <button onClick={handleClick} onDrag={handleClick}>Abrir mensagem</button>
-          <button id='whats-btn'><a href={`https://api.whatsapp.com/send/?text=${randomFrase === '' ? 'Venha conhecer o app de frases no link https://' : `Vi essa frase e lembrei de você: ${randomFrase}`}+&type=phone_number&app_absent=0`}><img id='whats-logo' src="./icons8-whatsapp-100.png" alt="" /></a></button>
+          <button id='whats-btn'><a href={`https://api.whatsapp.com/send/?text=${randomFrase === '' ? `${FRASE_API_WHATSAPP} ${localStorage.getItem('frase')?.valueOf()}` : `${FRASE_API_WHATSAPP} ${randomFrase}`}+&type=phone_number&app_absent=0`}><img id='whats-logo' src="./icons8-whatsapp-100.png" alt="" /></a></button>
         </section>
         <section id='horas'>
           <p id='hora'>{hora.padStart(2, "0")}</p>
