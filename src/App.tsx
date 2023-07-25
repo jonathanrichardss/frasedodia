@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import lista_de_frases from "./../data/frases.json"
 import swal from 'sweetalert';
 import './App.css'
-
+import { Notifyer } from './Notifyer';
 
 
 function App() {
@@ -86,6 +86,24 @@ function App() {
     show();
   }
 
+  async function start() {
+    try {
+      await Notifyer.init()
+      if (hora === '06') {
+        Notifyer.notify({
+          title: "Hora do Post",
+          body: `A sua frase do dia é: ${localStorage.getItem('frase')?.valueOf()}`,
+          image: "./assets/react.svg"
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    start();
+  }, [])
 
   return (
     <>
